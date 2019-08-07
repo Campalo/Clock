@@ -55,12 +55,48 @@
       }
 
       .hand {
+        font-size: 0.6rem;
         width: 50%;
         height: 6px;
-        background: rgba(0, 0, 0, 0.61);
+        color: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.2);
         position: absolute;
         top: 50%;
+        transition: all 0.05s;
+        /* by default it's 50%, so we move it to the center of the clock */
+        transform-origin: 100%;
+        /* by default it's horizontal, so we move the hand to the top to 12am*/
+        transform: rotate(90deg);
+        /* to make the seconds tic tact effect, "going away ans then coming back a little" */
+        transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
       }
     </style>
+
+    <script>
+      const secondHand = document.querySelector('.second-hand');
+      const minHand = document.querySelector('.min-hand');
+      const hourHand = document.querySelector('.hour-hand');
+
+      function setDate() {
+        const now = new Date();
+        //seconds
+        const seconds = now.getSeconds();
+        const secondsDegrees = (seconds / 60) * 360 + 90; // to get the angle for the rotation)
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+        //minutes
+        const min = now.getMinutes();
+        const minDegrees = (min / 60) * 360 + 90;
+        minHand.style.transform = `rotate(${minDegrees}deg`;
+        //hours
+        const hour = now.getHours();
+        const hourDegrees = (hour / 12) * 360 + (min / 60) * 30 + 90;
+        hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+      }
+
+      // every seconds the setDate function is triggered
+      setInterval(setDate, 1000);
+
+      setDate();
+    </script>
   </body>
 </html>
