@@ -43,7 +43,7 @@
         box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1),
           inset 0 0 0 3px rgba(0, 0, 0, 0.63),
           inset 0 0 10px rgba(0, 0, 0, 0.39), 0 0 10px rgba(10, 216, 223, 0.4);
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.2);
       }
 
       .clock-face {
@@ -59,7 +59,7 @@
         font-size: 0.6rem;
         width: 50%;
         height: 6px;
-        color: rgba(0, 0, 0, 0.4);
+        color: rgba(0, 0, 0, 0.6);
         background: rgba(0, 0, 0, 0.4);
         position: absolute;
         top: 50%;
@@ -67,20 +67,20 @@
         /* by default it's 50%, so we move it to the center of the clock */
         transform-origin: 100%;
         /* by default it's horizontal, so we move the hand to the top to 12am*/
-        transform: rotate(90deg);
+        transform: rotate(270deg);
         /* to make the seconds tic tact effect, "going away ans then coming back a little" */
         transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
       }
 
       .min-hand {
         font-size: 0.7rem;
-        color: rgba(58, 37, 5, 0.6);
+        color: rgba(58, 37, 5, 0.7);
         background: rgba(58, 37, 5, 0.6);
         height: 7px;
       }
       .hour-hand {
         font-size: 0.8rem;
-        color: rgba(32, 21, 3, 0.6);
+        color: rgba(32, 21, 3, 0.7);
         background: rgba(32, 21, 3, 0.6);
         height: 8px;
       }
@@ -95,15 +95,15 @@
         const now = new Date();
         //seconds
         const seconds = now.getSeconds();
-        const secondsDegrees = (seconds / 60) * 360 + 90; // to get the angle for the rotation)
+        const secondsDegrees = (seconds / 60) * 360 + 270; // to get the angle for the rotation)
         secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
         //minutes
         const min = now.getMinutes();
-        const minDegrees = (min / 60) * 360 + 90;
+        const minDegrees = (min / 60) * 360 + 270;
         minHand.style.transform = `rotate(${minDegrees}deg`;
         //hours
         const hour = now.getHours();
-        const hourDegrees = (hour / 12) * 360 + (min / 60) * 30 + 90;
+        const hourDegrees = (hour / 12) * 360 + (min / 60) * 30 + 270;
         hourHand.style.transform = `rotate(${hourDegrees}deg)`;
       }
 
